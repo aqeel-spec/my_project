@@ -1,10 +1,15 @@
-import {Client , Account , Databases} from "appwrite";
+import { Client, Account, Databases, Storage, Locale } from "appwrite";
 
 const client = new Client();
 
-client.setEndpoint('http://localhost/v1')
-.setProject("644fb2fd7f6dc51f0c95");
+client
+  .setEndpoint("http://64.227.134.177/v1")
+  .setProject("645740114537e8492e4b");
 
 export const account = new Account(client);
 
 export const database = new Databases(client);
+
+export const storage = new Storage(client);
+
+export const Location = new Locale(client);

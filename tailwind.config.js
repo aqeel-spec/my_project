@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        dataOrange : "#E5B945",
         textColor: '#A4A4A4',
         form: '#B8B8B8',
         orange: '#F2B132',

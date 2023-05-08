@@ -19,7 +19,7 @@ function Profile() {
 
   const router = useRouter();
   const [userDetails, setUserDetails] = useState<UserDetail>();
-  const [openProfile, setOpenProfile] = useState(false)
+  const [openProfile, setOpenProfile] = useState(true)
 
   useEffect(() => {
         const getData = account.get();
@@ -57,7 +57,7 @@ function Profile() {
              <div className="text-[#FFFFFF] ">
              <button className='log_btn' onClick={handleLogout}>Logout</button>
             </div>
-            <div onClick={() => setOpenProfile(!openProfile)} className='  cursor-pointer '>  
+            <div onClick={() => setOpenProfile(pre => (!pre) )} className='  cursor-pointer '>  
                 <div className=""><NameIcon  /></div>
             </div>
 

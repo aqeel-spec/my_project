@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 function Profile() {
 
   const router = useRouter();
-  const [userDetails, setUserDetails] = useState();
+  const [userDetails, setUserDetails] = useState<any>();
 
   useEffect(() => {
         const getData = account.get();
