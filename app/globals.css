@@ -43,11 +43,11 @@
   @apply w-32 h-32 object-cover rounded-full object-top;
   } 
   .container_card {
-    @apply max-w-none w-auto min-h-min p-8
+    @apply  min-h-screen  p-8
   }
   .testimonial {
     min-width: 12.5rem;
-    @apply max-w-sm m-4 p-7 bg-white rounded-xl;
+    @apply  m-4 p-7 bg-white rounded-xl;
   }
   .item {
     @apply bg-hamerBurger shadow-lg shadow-[#FF6060] rounded-sm

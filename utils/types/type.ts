@@ -19,3 +19,25 @@ interface StorageData {
         $id : string 
     }[]
 }
+export interface CountryData {
+    continent: string;
+    continentCode: string;
+    country: string;
+    countryCode: string;
+    ip: string;
+ }
+export interface FoodData {
+    $collectionId: string;
+    $databaseId: string;
+    $id: string;
+    $updatedAt: string;
+    Item_name: string;
+    countryData: CountryData[];
+    name: string;
+    imgArray: any[];
+    latitude: number;
+    logitude: number;
+    ph: number;
+    price: number;
+  }
+ 

@@ -1,5 +1,5 @@
 import React from "react";
-import { ReciptData } from "@/components/data/dummy_data";
+import { FoodData } from "@/components/data/dummy_data";
 import { HiFilter, HiOutlineShoppingCart } from "react-icons/hi";
 import { AiFillHeart, AiFillStar } from "react-icons/ai";
 
@@ -7,7 +7,7 @@ function page() {
   return (
     <>
       <div className="container2 flex flex-wrap justify-around">
-        {ReciptData.map((e) => (
+        {FoodData.map((e) => (
           <div className="team-profile" key={e.name}>
             <img
               src={`https://media.istockphoto.com/id/1065068792/photo/grilled-chicken-breast-with-fresh-peaches-blueberries-arugula-and-feta-cheese-close-up-on-a.jpg?b=1&s=170667a&w=0&k=20&c=YEgTSOoM8YcLOJKBABKKsHlkd15HkZSNJ2bXMSbndCc=`}

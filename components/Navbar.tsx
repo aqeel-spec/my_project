@@ -43,6 +43,10 @@ function Navbar() {
     );
   }, []);
 
+  useEffect(() => {
+    handleLogout;
+  }, []);
+
   const handleLogout = async () => {
     try {
       await account.deleteSession("current");
@@ -57,7 +61,7 @@ function Navbar() {
       <div className="flex justify-between ">
         <div className="text-xl font-semibold text-white ">Logo</div>
         <div className="">
-          <div className="  text-[#FFFFFF] md:flex hidden justify-items-center my-auto items-center text-center justify-between">
+          <div className="  text-[#FFFFFF] min-w-full w-auto flex md:hidden  justify-items-center my-auto items-center text-center justify-between">
             <ul className="flex flex-grow space-x-12 pr-10 justify-between relative">
               {Menus.map((menu, i) => (
                 <li key={i}>
@@ -78,7 +82,7 @@ function Navbar() {
             </ul>
           </div>
           <div
-            className={`  md:hidden items-end w-[300px] relative flex flex-col`}
+            className={`  md:flex hidden md:flex-col items-end w-[300px] relative `} /** md:hidden flex flex-col */
           >
             {!isOpen ? (
               <div className="  " onClick={handleClick}>
@@ -91,7 +95,7 @@ function Navbar() {
               />
             )}
             {isOpen && (
-              <ul className="dropDown_box z-10 pb-12 ">
+              <ul className="dropDown_box z-10 pb-12 text-form">
                 {Menus.map((menu, i) => (
                   <li
                     key={i}

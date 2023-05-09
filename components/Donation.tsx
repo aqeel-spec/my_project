@@ -1,33 +1,35 @@
 "use client";
-import { EmailIcon, KeyIcon, NameIcon } from "@/components/Icons/figmaDefault";
-import { SignUpData } from "@/utils/auth";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEyeInvisible, AiOutlineUser } from "react-icons/ai";
 import { BiDonateHeart, BiTime } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
-import { Moment } from "moment";
-import { RHFInput } from "react-hook-form-input";
-import { TimePicker } from "antd";
-import ImageUploader from "./ImageUploader";
 import { BsTelephoneOutbound } from "react-icons/bs";
 import { setTimeout } from "timers/promises";
 import { useRouter } from "next/navigation";
 import { Location } from "./appwrite/Config";
 import { MdDelete } from "react-icons/md";
+import { database } from "./appwrite/Config";
+import { ID } from "appwrite";
+import { CountryData } from "@/utils/types/type";
 
 enum GenderEnum {
   yes = "yes",
   male = "no",
 }
+
 interface DonationData {
   Item_name: string;
   duration: { hours: number; minutes: number; seconds?: 0 };
-  Item_location: { logitude: number; latitude: number; countryData: any };
+  Item_location: {
+    logitude: number;
+    latitude: number;
+    countryData: CountryData;
+  };
   time: any;
   donation: boolean;
   price: number;
-  pg: number;
+  ph: number;
   donate: GenderEnum;
   imgArray: any[];
 }
@@ -117,6 +119,36 @@ function Donation() {
 
   const onSubmit = async (data: DonationData) => {
     try {
+      // create document and send on database
+      const countryEnd = data.Item_location.countryData;
+      const promise = database.createDocument(
+        "645742f1acfa7ac60606",
+        "64574308c221d002643e",
+        `${ID.unique()}`,
+        {
+          Item_name: data.Item_name,
+          duration:
+            data.duration.hours * 3600 +
+            data.duration.minutes * 60 +
+            data.duration.seconds,
+          countryData: {
+            userContinent: countryEnd.continent,
+            userCountry: countryEnd.country,
+            userIp: countryEnd.ip,
+          },
+          price: data.price,
+          ph: data.ph,
+          donate: data.donate,
+        }
+      );
+      promise.then(
+        function (response) {
+          console.log(response); // Success
+        },
+        function (error) {
+          console.log(error); // Failure
+        }
+      );
       setFoodAdd(!foodAdd);
       reset();
       console.log(data);
@@ -315,14 +347,14 @@ function Donation() {
                   className=" input_section"
                   type="number"
                   placeholder="Enter your current ph. number"
-                  {...register("pg", {
+                  {...register("ph", {
                     required: "Number is required",
                   })}
                 />
               </div>
               {/** name section validation */}
-              {errors.pg && (
-                <p className="error_msg"> {errors.pg.message as string} </p>
+              {errors.ph && (
+                <p className="error_msg"> {errors.ph.message as string} </p>
               )}
             </div>
             {/** Submit btn here */}
